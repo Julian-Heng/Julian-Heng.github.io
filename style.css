@@ -30,9 +30,9 @@ a:link, a:visited, a:active {
     text-decoration: none;
 }
 
- a:hover {
+a:hover {
     text-decoration: underline;
- }
+}
 
 div.flex-container {
     max-width: 1024px;
