@@ -1,0 +1,76 @@
+[
+    {
+        "header": "General",
+        "icon": "fa-info-circle",
+        "urls": {
+            "Gmail": "https://mail.google.com",
+            "OzBargain": "https://www.ozbargain.com.au",
+            "Gitlab": "https://gitlab.com",
+            "Github": "https://github.com"
+        }
+    },
+    {
+        "header": "Social",
+        "icon": "fa-wechat",
+        "urls": {
+            "Facebook": "https://www.facebook.com",
+            "Messenger": "https://www.messenger.com",
+            "Twitter": "https://www.twitter.com"
+        }
+    },
+    {
+        "header": "Art",
+        "icon": "fa-paint-brush",
+        "urls": {
+            "DeviantArt": "https://deviantart.com",
+            "Tumblr": "https://tumblr.com",
+            "Pixiv": "https://www.pixiv.net"
+        }
+    },
+    {
+        "header": "Entertainment",
+        "icon": "fa-play",
+        "urls": {
+            "Youtube": "https://www.youtube.com/feed/subscriptions",
+            "Netflix": "https://www.netflix.com",
+            "SoundCloud": "https://soundcloud.com",
+            "Plex": "https://app.plex.tv/web/app#",
+            "WhoSampled": "https://whosampled.com"
+        }
+    },
+    {
+        "header": "Network",
+        "icon": "fa-server",
+        "urls": {
+            "Router": "192.168.1.1",
+            "Transmission": "http://hellbat.duckdns.org:9091",
+            "NextCloud": "https://hellbat.duckdns.org/nextcloud"
+        }
+    },
+    {
+        "header": "Reddit",
+        "icon": "fa-reddit-alien",
+        "urls": {
+            "r/linux": "https://old.reddit.com/r/linux",
+            "r/unixporn": "https://old.reddit.com/r/unixporn",
+            "r/games": "https://www.reddit.com/r/games"
+        }
+    },
+    {
+        "header": "4chan",
+        "icon": "fa-wechat",
+        "urls": {
+            "/g/": "https://boards.4chan.org/g/catalog",
+            "/wg/": "https://boards.4chan.org/wg/catalog"
+        }
+    },
+    {
+        "header": "School",
+        "icon": "fa-book",
+        "urls": {
+            "Oasis": "https://oasis.curtin.edu.au",
+            "BlackBoard": "https://lms.curtin.edu.au",
+            "School Email": "https://outlook.com/student.curtin.edu.au"
+        }
+    }
+]

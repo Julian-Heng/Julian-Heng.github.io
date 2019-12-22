@@ -5,83 +5,12 @@
   <link rel="icon" href="setup_0000.ico">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="clock.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="startpage.js"></script>
   <title>Start</title>
 </head>
-<body onload="setTime()">
+<body onload="setClock()">
   <div id="clock" class="clock"></div>
-  <div id="box" class="flex-container">
-    <div id="row1" class="flex-container">
-      <div id="general" class="link-box">
-        <div class="header"><h3><i class="fa fa-info-circle"></i>General</h3></div>
-          <ul>
-            <li><a href="https://mail.google.com">Gmail</a></li>
-            <li><a href="https://www.ozbargain.com.au">OzBargain</a></li>
-            <li><a href="https://gitlab.com">Gitlab</a></li>
-            <li><a href="https://github.com">Github</a></li>
-          </ul>
-      </div>
-      <div id="social" class="link-box">
-        <div class="header"><h3><i class="fa fa-wechat"></i>Social</h3></div>
-          <ul>
-            <li><a href="https://www.facebook.com">Facebook</a></li>
-            <li><a href="https://www.messenger.com">Messenger</a></li>
-            <li><a href="https://www.twitter.com">Twitter</a></li>
-          </ul>
-      </div>
-      <div id="art" class="link-box">
-        <div class="header"><h3><i class="fa fa-paint-brush"></i>Art</h3></div>
-          <ul>
-            <li><a href="https://deviantart.com">Deviantart</a></li>
-            <li><a href="https://tumblr.com">Tumblr</a></li>
-            <li><a href="http://www.pixiv.net">Pixiv</a></li>
-          </ul>
-      </div>
-      <div id="entertainment" class="link-box">
-        <div class="header"><h3><i class="fa fa-play"></i>Entertainment</h3></div>
-          <ul>
-            <li><a href="https://www.youtube.com/feed/subscriptions">YouTube</a></li>
-            <li><a href="https://www.netflix.com">Netflix</a></li>
-            <li><a href="https://soundcloud.com">SoundCloud</a></li>
-            <li><a href="https://app.plex.tv/web/app#">Plex</a></li>
-            <li><a href="https://whosampled.com">WhoSampled</a></li>
-          </ul>
-      </div>
-    </div>
-    <div id="row2" class="flex-container">
-      <div id="tool" class="link-box">
-        <div class="header"><h3><i class="fa fa-server"></i>Network</h3></div>
-          <ul>
-            <li><a href="http://192.168.1.1">Router</a></li>
-            <li><a href="http://hellbat.duckdns.org:9091">Transmission</a></li>
-            <li><a href="https://hellbat.duckdns.org/nextcloud">NextCloud</a></li>
-          </ul>
-      </div>
-      <div id="reddit" class="link-box">
-        <div class="header"><h3><i class="fa fa-reddit-alien"></i><a href="https://reddit.com">Reddit</a></h3></div>
-          <ul>
-            <li><a href="https://www.reddit.com/r/linux">r/linux</a></li>
-            <li><a href="https://www.reddit.com/r/unixporn">r/unixporn</a></li>
-            <li><a href="https://www.reddit.com/r/games">r/games</a></li>
-          </ul>
-      </div>
-      <div id="4chan" class="link-box">
-        <div class="header"><h3><i class="fa fa-user-o"></i><a href="https://4chan.org">4chan</a></h3></div>
-          <ul>
-            <li><a href="https://boards.4chan.org/g/catalog">/g/</a></li>
-            <li><a href="https://boards.4chan.org/wg/catalog">/wg/</a></li>
-          </ul>
-      </div>
-      <div id="school" class="link-box">
-        <div class="header"><h3><i class="fa fa-book"></i>School</h3></div>
-          <ul>
-            <li><a href="https://oasis.curtin.edu.au">Oasis</li>
-            <li><a href="https://lms.curtin.edu.au">Blackboard</li>
-            <li><a href="https://outlook.com/student.curtin.edu.au">School Email</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div id="box" class="flex-container"></div>
 </body>
 </html>
