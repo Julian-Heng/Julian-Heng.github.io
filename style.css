@@ -1,4 +1,7 @@
-@font-face { font-family: Roboto; src: url('Roboto-Regular.ttf'); } 
+@font-face {
+    font-family: Roboto;
+    src: url('Roboto-Regular.ttf');
+}
 
 body {
     background-color: #272B35;
@@ -69,13 +72,18 @@ div.link-box {
     max-height: 226px;
 }
 
-div.clock {
+div.clock, div.date {
     max-width: 336px;
     margin: auto;
     margin-top: 64px;
     text-align: center;
     font-size: 36pt;
     color: #F5F7FA;
+}
+
+div.date {
+    font-size: 15pt;
+    margin-top: 12px;
 }
 
 i {
@@ -89,10 +97,11 @@ i {
 }
 
 @media screen and (max-width: 450px) {
-  div.flex-container {
-    max-width: 272px;
-  }
-  div.link-box {
-  min-height: 164px;
-  max-height: 164px;
+    div.flex-container {
+        max-width: 272px;
+    }
+    div.link-box {
+        min-height: 164px;
+        max-height: 164px;
+    }
 }

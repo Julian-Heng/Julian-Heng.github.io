@@ -11,7 +11,6 @@ class Entry
         this.urls = urls;
     }
 
-
     toHTMLElement(): JQuery<HTMLElement>
     {
         let linkBoxID: string = this.header.toLowerCase();
@@ -25,17 +24,15 @@ class Entry
         return linkBox;
     }
 
-
     getHeaderHTML(): JQuery<HTMLElement>
     {
         return $("<div/>", {
             "class": "header",
         }).append($("<h3/>", {
         }).append($("<i/>", {
-            "class": `fa ${this.icon}`
+            "class": `fa fa-${this.icon}`
         })).append(this.header));
     }
-
 
     getLinksHTML(): JQuery<HTMLElement>
     {
@@ -52,86 +49,67 @@ class Entry
 }
 
 
-function processEntries(entries: any): Array<Entry>
+function setEntries(entries: any)
 {
-    let output: Array<Entry>;
-    output = new Array();
-    for (let i of entries)
-        output.push(new Entry(i.header, i.icon, i.urls));
-    return output;
-}
-
-
-function setEntries(entries: Array<Entry>)
-{
-    let numPerRow: number;
-    let rows: Array<Array<Entry>>;
-
+    let rowLimit: number;
+    let rowCount: number;
     let count: number;
-    let tmp: Array<Entry>;
 
-    numPerRow = 4;
-    if (entries.length == 0)
-        return;
+    let rowID: string;
+    let rowElement: JQuery<HTMLElement>;
 
+    rowLimit = 4;
+    rowCount = 1;
     count = 0;
-    tmp = new Array();
-    rows = new Array();
 
     for (let entry of entries)
     {
-        count++;
-        tmp.push(entry);
+        entry = new Entry(entry.header, entry.icon, entry.urls);
 
-        if (count % numPerRow == 0)
+        if ((count++ % rowLimit) == 0)
         {
-            rows.push(tmp);
-            count = 0;
-            tmp = new Array();
+            rowID = `row${rowCount}`;
+            rowElement = $("<div/>", {id: rowID, "class": "flex-container"});
+            rowCount++;
         }
-    }
 
-    if (tmp.length != 0)
-        rows.push(tmp);
-
-    count = 0;
-    for (let row of rows)
-    {
-        count++;
-        let rowID: string = "row" + count;
-        let rowElement: JQuery<HTMLElement> = $("<div/>", {
-            id: rowID,
-            "class": "flex-container"
-        });
-
-        for (let entry of row)
-            rowElement.append(entry.toHTMLElement());
-
+        rowElement.append(entry.toHTMLElement());
         rowElement.appendTo("#box");
     }
 }
 
 
-function setClock()
+function onLoadClock()
 {
     let date: Date;
-    let locale: Record<any, any>;
+    let timeLocale: any;
+    let dateLocale: any;
     let hours: string;
     let mins: string;
+    let dateStr: string;
 
     date = new Date();
-    locale = {minimumIntegerDigits: 2, useGrouping: false};
-    hours = (date.getHours()).toLocaleString("en-AU", locale);
-    mins = (date.getMinutes()).toLocaleString("en-AU", locale);
+    timeLocale = {minimumIntegerDigits: 2, useGrouping: false};
+    dateLocale = {
+        day: "2-digit",
+        weekday: "short",
+        year: "numeric",
+        month: "short"
+    };
 
-    $("#clock").html(hours + ":" + mins);
+    hours = (date.getHours()).toLocaleString("en-AU", timeLocale);
+    mins = (date.getMinutes()).toLocaleString("en-AU", timeLocale);
+    dateStr = date.toLocaleDateString("en-AU", dateLocale);
+
+    $("#clock").html(`${hours}:${mins}`);
+    $("#date").html(dateStr);
 }
 
 
 $(window).on("load", () => {
     fetch("./urls.json").then(res => res.json())
-                        .then(data => setEntries(processEntries(data)))
+                        .then(data => setEntries(data))
                         .catch(err => alert(err));
 
-    setInterval(() => setClock(), 500);
+    setInterval(() => onLoadClock(), 500);
 });

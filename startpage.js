@@ -18,7 +18,7 @@ var Entry = /** @class */ (function () {
         return $("<div/>", {
             "class": "header"
         }).append($("<h3/>", {}).append($("<i/>", {
-            "class": "fa " + this.icon
+            "class": "fa fa-" + this.icon
         })).append(this.header));
     };
     Entry.prototype.getLinksHTML = function () {
@@ -30,67 +30,50 @@ var Entry = /** @class */ (function () {
     };
     return Entry;
 }());
-function processEntries(entries) {
-    var output;
-    output = new Array();
-    for (var _i = 0, entries_1 = entries; _i < entries_1.length; _i++) {
-        var i = entries_1[_i];
-        output.push(new Entry(i.header, i.icon, i.urls));
-    }
-    return output;
-}
 function setEntries(entries) {
-    var numPerRow;
-    var rows;
+    var rowLimit;
+    var rowCount;
     var count;
-    var tmp;
-    numPerRow = 4;
-    if (entries.length == 0)
-        return;
+    var rowID;
+    var rowElement;
+    rowLimit = 4;
+    rowCount = 1;
     count = 0;
-    tmp = new Array();
-    rows = new Array();
-    for (var _i = 0, entries_2 = entries; _i < entries_2.length; _i++) {
-        var entry = entries_2[_i];
-        count++;
-        tmp.push(entry);
-        if (count % numPerRow == 0) {
-            rows.push(tmp);
-            count = 0;
-            tmp = new Array();
+    for (var _i = 0, entries_1 = entries; _i < entries_1.length; _i++) {
+        var entry = entries_1[_i];
+        entry = new Entry(entry.header, entry.icon, entry.urls);
+        if ((count++ % rowLimit) == 0) {
+            rowID = "row" + rowCount;
+            rowElement = $("<div/>", { id: rowID, "class": "flex-container" });
+            rowCount++;
         }
-    }
-    if (tmp.length != 0)
-        rows.push(tmp);
-    count = 0;
-    for (var _a = 0, rows_1 = rows; _a < rows_1.length; _a++) {
-        var row = rows_1[_a];
-        count++;
-        var rowID = "row" + count;
-        var rowElement = $("<div/>", {
-            id: rowID,
-            "class": "flex-container"
-        });
-        for (var _b = 0, row_1 = row; _b < row_1.length; _b++) {
-            var entry = row_1[_b];
-            rowElement.append(entry.toHTMLElement());
-        }
+        rowElement.append(entry.toHTMLElement());
         rowElement.appendTo("#box");
     }
 }
-function setClock() {
+function onLoadClock() {
     var date;
-    var locale;
+    var timeLocale;
+    var dateLocale;
     var hours;
     var mins;
+    var dateStr;
     date = new Date();
-    locale = { minimumIntegerDigits: 2, useGrouping: false };
-    hours = (date.getHours()).toLocaleString("en-AU", locale);
-    mins = (date.getMinutes()).toLocaleString("en-AU", locale);
+    timeLocale = { minimumIntegerDigits: 2, useGrouping: false };
+    dateLocale = {
+        day: "2-digit",
+        weekday: "short",
+        year: "numeric",
+        month: "short"
+    };
+    hours = (date.getHours()).toLocaleString("en-AU", timeLocale);
+    mins = (date.getMinutes()).toLocaleString("en-AU", timeLocale);
+    dateStr = date.toLocaleDateString("en-AU", dateLocale);
     $("#clock").html(hours + ":" + mins);
+    $("#date").html(dateStr);
 }
 $(window).on("load", function () {
     fetch("./urls.json").then(function (res) { return res.json(); })
-        .then(function (data) { return setEntries(processEntries(data)); })["catch"](function (err) { return alert(err); });
-    setInterval(function () { return setClock(); }, 500);
+        .then(function (data) { return setEntries(data); })["catch"](function (err) { return alert(err); });
+    setInterval(function () { return onLoadClock(); }, 500);
 });
